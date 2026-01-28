@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 소개 | Face Pizza 프로젝트</title>
+    <style>
+        body {
+            margin: 0;
+            background: #fafafa;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        /* 네비게이션 */
+       .navbar {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 좌측 로고 */
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #003681;
+            cursor: pointer;
+        }
+
+        /* 우측 메뉴 */
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .nav-menu li a:hover {
+            color: #003681;
+        }
+
+        /* 페이지 타이틀 */
+        .page-title {
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        /* 팀원 카드 */
+        .team-container {
+            width: 100%;
+            max-width: 950px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .member-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .member-card img {
+            width: 150px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .member-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .member-role {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+    </style>
+
+    <script>
+        function goHome() { window.location.href = "index.html"; }
+        function goProject() { window.location.href = "project.html"; }
+        function goTeam() { window.location.href = "team.html"; }
+        function goContact() { window.location.href = "contact.html"; }
+        function goReport() { window.location.href = "report.html"; }
+    </script>
+</head>
+
+<body>
+
+<!-- 🔵 네비게이션 -->
+<nav class="navbar">
+        <div class="nav-inner">
+
+            <!-- 좌측 로고 -->
+            <div class="nav-logo" onclick="window.location.href='index.html'">
+                Team
+            </div>
+
+            <!-- 우측 메뉴 -->
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="project.html">프로젝트</a></li>
+                <li><a href="report.html">보고서</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+<!-- 🔵 페이지 타이틀 -->
+<div class="page-title">
+    <h1>팀 소개</h1>
+    <p style="color:#555;">한양여자대학교 · 빅데이터과 · 얼굴 Pizza팀</p>
+</div>
+
+<!-- 🔵 팀원 상세 소개 -->
+<div class="team-container">
+
+    <!-- 문예림 -->
+    <div class="member-card">
+        <img src="assets/images/예림2.jpg" alt="">
+        <div class="member-name">문예림</div>
+        <div class="member-role">
+            • 팀장<br>
+            • 보고서 제작 <br>
+            • GitHub 관리 <br>
+            • DB 설계<br>
+            • 관리자 웹 개발(front-end, back-end)<br>
+            • 얼굴 인식 AI 모듈 최적화<br>
+            • 프론트엔드 개발 (React Native, expo go)<br>
+            • 백엔드 개발 (Spring Boot, API 전체 설계)<br>
+        </div>
+    </div>
+
+    <!-- 안시현 -->
+    <div class="member-card">
+        <img src="assets/images/시현2.jpg" alt="">
+        <div class="member-name">안시현</div>
+        <div class="member-role">
+            • 발표자료 제작 <br>
+            • 기획 및 요구사항 정의<br>
+            • UI/UX 구성 및 디자인<br>
+        </div>
+    </div>
+
+    <!-- 윤유지 -->
+    <div class="member-card">
+        <img src="assets/images/유지2.jpg" alt="">
+        <div class="member-name">윤유지</div>
+        <div class="member-role">
+            • 얼굴 인식 AI 모듈 최적화<br>
+            • DB 구조 설계 및 최적화<br>
+            • 백엔드 개발 (springboot, API 전체 설계)<br>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 yealim Moon. All rights reserved.
+</footer>
+
+</body>
+</html>
+ㄴ

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 얼굴인식 출석 시스템</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            background: #ffffff;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+        }
+
+        section {
+            padding: 80px 24px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* --------------------
+           NAVIGATION BAR
+        -------------------- */
+        .navbar {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #003681;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .nav-menu li a:hover {
+            color: #003681;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding-top: 120px;
+            padding-bottom: 100px;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 900;
+        }
+
+        .hero-sub {
+            margin-top: 12px;
+            font-size: 20px;
+            color: #4b5563;
+        }
+
+        .hero-img {
+            width: 400px;
+            margin-top: 40px;
+            border-radius: 16px;
+        }
+
+        /* MAIN BUTTON */
+        .btn-center {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 버튼 간격 */
+}
+
+.btn-main {
+    background-color: #4a6cf7;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.25s;
+    font-weight: 600;
+}
+
+.btn-main:hover {
+    background-color: #3a57d3;
+}
+
+.admin-btn {
+    background-color: #333; /* 약간 다른 느낌으로 구분 */
+}
+
+.admin-btn:hover {
+    background-color: #555;
+}
+
+
+        .btn-main {
+            display: inline-block;
+            padding: 16px 32px;
+            background: #003681;
+            color: white;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .btn-main:hover {
+            background: #0044b0;
+            transform: translateY(-2px);
+        }
+
+        /* TEAM / MEMBERS */
+        .members {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .member {
+            text-align: center;
+            width: 180px;
+        }
+
+        .member img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .member-name {
+            margin-top: 12px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* FEATURES */
+        .features {
+            text-align: center;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: #f9fafb;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        /* Mobile: 1개씩 */
+        @media (max-width: 600px) {
+            .feature-list {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        /* TECH STACK */
+        .tech-stack {
+            text-align: center;
+        }
+
+        .stack-box {
+            margin-top: 24px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        /* ARCHITECTURE */
+        .arch-img {
+            width: 80%;
+            margin-top: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #f3f4f6;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 80px;
+            color: #6b7280;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            border-top: 1px solid #e5e7eb;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+        .tech-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            text-align: center;
+        }
+
+        .tech-item img {
+            width: 80px;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgb(188, 188, 188);
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+
+        .tech-item p {
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo" onclick="window.location.href='index.html'">
+                AI-based Facial Recognition Attendance System
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="overview.html">개요</a></li>
+                <li><a href="team.html">팀원 소개</a></li>
+                <li><a href="report.html">보고서</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="overview">
+        <h1 class="hero-title">AI 얼굴인식 기반 출석 시스템</h1>
+        <p class="hero-sub">HYWU Big Data · Face Pizza Team</p>
+        <img src="assets/images/faceon2.png" class="hero-img" alt="프로젝트 대표 이미지">
+    </section>
+
+    <div class="btn-center">
+    <div class="btn-main" onclick="goProject()"> 학생 앱 소개 →</div>
+    <div class="btn-main admin-btn" onclick="goAdmin()">관리자 페이지 소개 →</div>
+</div>
+
+
+    <script>
+        function goProject() {
+            window.location.href = "project.html";
+        }
+    </script>
+
+    <!-- TEAM -->
+    <section class="features">
+        <h2>Team 얼굴 Pizza</h2><br>
+        <div class="members">
+            <div class="member">
+                <img src="assets/images/예림.png">
+                <div class="member-name">문예림</div>
+            </div>
+            <div class="member">
+                <img src="assets/images/시현.png">
+                <div class="member-name">안시현</div>
+            </div>
+            <div class="member">
+                <img src="assets/images/유지.png">
+                <div class="member-name">윤유지</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <h2>주요 기능</h2><br>
+
+        <div class="feature-list">
+            <div class="card">
+                <h3>1. 얼굴 인식 출석</h3>
+                <p>dlib + OpenCV 기반의 고정확도 얼굴 인식</p>
+            </div>
+            <div class="card">
+                <h3>2. 실시간 처리</h3>
+                <p>최적화된 AI 모듈로 1초 내 응답</p>
+            </div>
+            <div class="card">
+                <h3>3. 관리자 웹</h3>
+                <p>학생 관리, 수업 관리, 출석 통계를 제공</p>
+            </div>
+            <div class="card">
+                <h3>4. 보안 처리</h3>
+                <p>사용자 암호화 저장 + JWT 인증 적용</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="tech-stack">
+        <h2>사용한 기술</h2><br>
+
+    <div class="tech-logos">
+        <div class="tech-item">
+            <img src="assets/images/expogo.png">
+            <p>Expo Go</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/reactnative.png">
+            <p>React Native</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/dlib+opencv.png">
+            <p>dlib + OpenCV</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/c++.png">
+            <p>C++</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/springboot.jpg">
+            <p>Spring Boot</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/restapi.png">
+            <p>REST API</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/mysql.png">
+            <p>MySQL</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/jwt.png">
+            <p>JSON WEB TOKEN (JWT)</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/github.png">
+            <p>GitHub</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/html.png">
+            <p>HTML</p>
+        </div>
+    </div>
+    </section>
+
+    <footer>
+    © 2025 yealim Moon. All rights reserved.
+</footer>
+
+<script>
+    function goProject() {
+        window.location.href = "project.html"; 
+    }
+
+    function goAdmin() {
+        window.location.href = "admin.html"; 
+    }
+</script>
+
+
+</body>
+</html>

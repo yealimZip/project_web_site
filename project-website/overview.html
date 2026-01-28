@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 개요 | Face Pizza 출석 시스템</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            background: #fafafa;
+            color: #333;
+        }
+
+        /* NAV */
+        .navbar {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #003681;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #374151;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-menu li a:hover {
+            color: #003681;
+        }
+
+        /* Page Layout */
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .sub-text {
+            color: #6b7280;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #003681;
+            margin-bottom: 18px;
+        }
+
+        .list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px 0;
+            border-top: 1px solid #e5e7eb;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .logo-img {
+    width: 200px;             /* 원하는 크기로 조절 가능 */
+    height: auto;
+    border-radius: 10px;      /* 필요하면 삭제해도 됨 */
+    flex-shrink: 0;
+}
+
+.logo-text {
+    flex: 1;
+    min-width: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+
+    word-break: keep-all;
+}
+
+.logo-text h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.logo-text p {
+    line-height: 1.6;
+    color: #555;
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo" onclick="window.location.href='index.html'">개요</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="project.html">프로젝트</a></li>
+                <li><a href="team.html">팀원소개</a></li>
+                <li><a href="report.html">보고서</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- 프로젝트 소개 -->
+        <section class="section">
+            <div class="section-title">프로젝트 소개</div>
+            <p>
+                AI 기반 출석체크 시스템은 얼굴 인식 기반의 자동 출석 체크 플랫폼으로,
+                기존 수기 출석 방식의 비효율성과 대리출석 문제를 해결하기 위해 개발되었습니다.<br><br>
+                실시간 얼굴 인식 AI, 모바일 앱, 관리자 웹 대시보드를 통합하여 정확하고 편리한 출석 환경을 제공합니다.
+            </p>
+        </section>
+
+    <section class="section">
+    <h3 class="section-title">FaceOn 로고 의미</h3><br>
+
+    <div class="logo-container">
+        <img src="assets/images/faceon2.png" class="logo-img" alt="FaceOn Logo"><br>
+        
+        <div class="logo-text"><br>
+            <p>
+                FaceOn 로고는 얼굴인식 기술을 기반으로 출석을 보다 쉽게 만든다는 프로젝트의 핵심 가치를 직관적으로 담아 제작하였습니다.</p>
+                <p>로고의 사각 형태는 얼굴 프레임을, 전자 회로 패턴은 AI 인공지능 기술과 컴퓨터비전 기술을 의미하며,
+                파란색 미소 라인은 사용자의 편의성과 긍정적인 피드백을 표현합니다.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
+
+        <!-- 개발 목표 -->
+        <section class="section">
+            <div class="section-title">개발 목표</div>
+            <ul class="list">
+                <li>정확하고 빠른 자동 출석 시스템 구축</li>
+                <li>대리출석 방지 및 신뢰도 향상</li>
+                <li>학생·관리자 모두를 고려한 UX 제공</li>
+                <li>출석 데이터를 DB에 저장하고 시각화하여 관리 효율 증대</li>
+                <li>실시간 반응 속도를 고려한 AI 모듈 최적화</li>
+            </ul>
+        </section>
+
+        <!-- 시스템 구성 -->
+        <section class="section">
+            <div class="section-title">시스템 구성</div>
+            <p>
+                본 시스템은 다음과 같은 구조로 구성되었습니다.
+            </p>
+            <ul class="list">
+                <li>모바일 앱 (React Native) – 얼굴 인식 기반 출석</li>
+                <li>관리자 웹 (HTML) – 출석 현황 조회, 사용자 관리, 출석 기록 시각화</li>
+                <li>Spring Boot 서버 – REST API 제공</li>
+                <li>AI 모듈 (dlib + OpenCV) – 얼굴 인식 및 특징 추출</li>
+                <li>MySQL 데이터베이스 – 출석 기록과 사용자 정보 저장</li>
+            </ul>
+        </section>
+
+        <!-- 주요 기능 -->
+        <section class="section">
+            <div class="section-title">주요 기능</div>
+            <ul class="list">
+                <li>실시간 얼굴 인식 출석 기능</li>
+                <li>학생 앱 + 관리자 웹 통합 환경 제공</li>
+                <li>사용자 등록, 사진 업로드, 얼굴 데이터 관리</li>
+                <li>출석 로그 자동 저장 및 시각화</li>
+                <li>AI 인식 속도 최적화 및 보안 강화</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer>
+        © 2025 yealim Moon. All rights reserved.
+    </footer>
+
+</body>
+
+</html>

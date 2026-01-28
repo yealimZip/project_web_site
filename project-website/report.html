@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프로젝트 결과물 보고서 | Face Pizza 출석 시스템</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            background: #fafafa;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #003681;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .nav-menu li a:hover {
+            color: #003681;
+        }
+
+        /* PAGE TITLE */
+        .page-title {
+            max-width: 1100px;
+            margin: 40px auto 20px;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .page-title h1 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* PDF VIEWER */
+        .pdf-wrapper {
+            max-width: 1100px;
+            margin: 20px auto;
+            height: 85vh;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .pdf-wrapper embed {
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+            color: #666;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo" onclick="window.location.href='index.html'">Report</div>
+
+        <ul class="nav-menu">
+            <li><a href="index.html">홈</a></li>
+            <li><a href="project.html">프로젝트</a></li>
+            <li><a href="team.html">팀원 소개</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- PAGE TITLE -->
+<div class="page-title">
+    <h1>캡스톤디자인 프로젝트 결과물 보고서</h1>
+    <p>Face Pizza AI 출석 시스템 최종 보고서를 웹에서 바로 확인할 수 있습니다.</p><br>
+</div>
+
+<!-- PDF VIEW AREA -->
+<div class="pdf-wrapper">
+
+    <embed src="assets/pdf/project_report.pdf" type="application/pdf">
+</div>
+
+<footer>
+    © 2025 yealim Moon. All rights reserved.
+</footer>
+
+</body>
+</html>

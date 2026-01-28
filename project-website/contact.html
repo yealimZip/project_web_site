@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문의하기 | Face Pizza 출석 시스템</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            background: #fafafa;
+            text-align: center;
+        }
+
+        /* 네비게이션 바 */
+        .navbar {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #003681;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .nav-menu li a:hover {
+            color: #003681;
+        }
+
+        /* 페이지 전체 레이아웃 */
+        .page {
+            padding: 60px 20px;
+            max-width: 950px;
+            margin: auto;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .sub-text {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 40px;
+        }
+
+        /* 팀원 카드 */
+        .members {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .member {
+            width: 220px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .member img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .member-name {
+            font-size: 19px;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        .member-role {
+            color: #6b7280;
+            font-size: 14px;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        .member-email {
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .email-link {
+            color: #003681;
+            text-decoration: none;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            border-top: 1px solid #e5e7eb;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo" onclick="window.location.href='index.html'">Contact</div>
+
+        <ul class="nav-menu">
+            <li><a href="index.html">홈</a></li>
+            <li><a href="project.html">프로젝트</a></li>
+            <li><a href="team.html">팀원소개</a></li>
+            <li><a href="report.html">보고서</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Page -->
+<section class="page">
+    <h2>팀에게 문의하기</h2>
+    <p class="sub-text">출석 시스템 개발과 관련된 문의는 아래 이메일로 문의해 주세요.</p>
+
+    <div class="members">
+
+        <!-- 문예림 -->
+        <div class="member">
+            <img src="assets/images/예림.png" alt="문예림">
+            <div class="member-name">문예림</div>
+            <div class="member-role">팀장 · 백엔드 · 프론트엔드<br>AI 모듈 최적화 · 관리자 웹</div>
+            <div class="member-email">
+                <a class="email-link" href="mailto:ringring567@naver.com">ringring567@naver.com</a>
+            </div>
+        </div>
+
+        <!-- 안시현 -->
+        <div class="member">
+            <img src="assets/images/시현.png" alt="안시현">
+            <div class="member-name">안시현</div>
+            <div class="member-role">기획 · UX/UI 디자인</div>
+            <div class="member-email">
+                <a class="email-link" href="mailto:sh77390117@gmail.com">sh77390117@gmail.com</a>
+            </div>
+        </div>
+
+        <!-- 윤유지 -->
+        <div class="member">
+            <img src="assets/images/유지.png" alt="윤유지">
+            <div class="member-name">윤유지</div>
+            <div class="member-role">백엔드 · DB 설계<br>AI 모델 반응속도 개선</div>
+            <div class="member-email">
+                <a class="email-link" href="mailto:yyun01964@gmail.com">yyun01964@gmail.com</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2025 yealim Moon. All rights reserved.
+</footer>
+
+</body>
+</html>

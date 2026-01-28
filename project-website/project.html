@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 얼굴인식 출석 시스템</title>
+
+    <style>
+        body {
+            font-family: Pretendard, sans-serif;
+            margin: 0;
+            background: #ffffff;
+            color: #222;
+        }
+
+        /* ----------------------------------
+            상단 메인 헤더
+        ---------------------------------- */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            border-bottom: 1px solid #e5e7eb;
+            background-color: #ffffff;
+            position: relative;
+        }
+
+        .header-left {
+            min-width: 150px;
+        }
+
+        .school-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #002962;
+            white-space: nowrap;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+            min-width: 150px;
+            text-align: right;
+        }
+
+
+        /* ----------------------------------
+            네비게이션 바
+        ---------------------------------- */
+        nav.navbar {
+            width: 100%;
+            background: #fafafa;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+        }
+
+        nav.navbar ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav.navbar a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 6px 10px;
+            transition: 0.2s;
+        }
+
+        nav.navbar a:hover {
+            color: #0b5cff;
+        }
+
+
+        /* ----------------------------------
+            기본 헤더
+        ---------------------------------- */
+        header {
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+
+        header h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .faceon2 img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        /* ----------------------------------
+            공통 스타일
+        ---------------------------------- */
+        .section {
+            width: 80%;
+            margin: 70px auto;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            border-left: 6px solid #b3b3b3;
+            padding-left: 12px;
+        }
+
+        .section.overview h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section.overview p {
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #000000;
+        }
+
+
+        /* ----------------------------------
+            기술 로고
+        ---------------------------------- */
+        .tech-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            text-align: center;
+        }
+
+        .tech-item img {
+            width: 80px;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgb(188, 188, 188);
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+
+        .tech-item p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+
+        /* ----------------------------------
+            가로 스크롤 갤러리
+        ---------------------------------- */
+        .h-scroll {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+
+        .h-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .h-scroll img {
+            width: 280px;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .h-scroll img:hover {
+            transform: scale(1.04);
+        }
+
+
+        /* ----------------------------------
+            모달
+        ---------------------------------- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        .site-footer {
+            border-top: 1px solid #eee;
+            padding: 16px 0;
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+        }
+
+        .wirframe img {
+            border-radius: 20px;
+            width:600px;
+        }
+         .architecture img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        /* 기능 나열 */
+        .feature-list {
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            margin-bottom: 18px;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 8px;
+        }
+
+         .api-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 18px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+        }
+
+        .site-footer {
+            text-align: center;
+            padding: 16px;
+            color: #666;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 메인 헤더 -->
+    <header class="main-header">
+        <div class="header-left">
+            <img src="assets/images/faceon2.png" onclick="window.location.href='index.html'" alt="학교 로고" class="school-logo">
+        </div>
+
+        <div class="header-center">
+            <span class="project-title">AI-based Facial Recognition Attendance System</span>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <span class="arrow">←</span> Back
+        </a>
+    </header>
+
+
+    <!-- 네비게이션 바 -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#overview">프로젝트 목표</a></li>
+            <li><a href="#why">프로젝트 필요성</a></li>
+            <li><a href="#architecture">전체 시스템 구조</a></li>
+            <li><a href="#features">주요 기능 상세</a></li>
+            <li><a href="#tech">사용 기술</a></li>
+            <li><a href="#figma">와이어프레임</a></li>
+            <li><a href="#front-end">front-end</a></li>
+            <li><a href="#result">성과</a></li>
+            <li><a href="#video">시연 영상</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- 본문 헤더 -->
+    <header>
+        <h1>AI 얼굴인식 출석 시스템 - 학생 App</h1>
+        <p>AI 기반 스마트 출석 인증 솔루션</p>
+        <div class="faceon2">
+            <img src="assets/images/faceon2.png">
+        </div>
+    </header><br>
+
+
+    <!-- 개요 -->
+    <div class="section overview" id="overview">
+        <h2>프로젝트 목표</h2><br>
+
+        <p>
+            AI 기반 얼굴인식 출석 시스템은 기존의 비효율적인 출석 방식 문제를 해결하기 위해 개발되었습니다.<br>
+            본 프로젝트는 얼굴 인식 기술과 GPS · 시간 기반 검증을 결합하여, 빠르고 정확한 출석 인증 환경을 제공하는 것을 목표로 합니다.
+        </p>
+
+        <p>
+            우리는 복잡한 수기 절차나 QR 스캔이 필요없는, <br>
+            사용자가 개인 휴대폰 카메라로 얼굴 인식을 하면 자동으로 출석이 처리되는 완전 자동화 출석 시스템을 구축하고자 했습니다.
+        </p>
+    </div><br>
+
+
+    <!-- 필요성 -->
+    <div class="section" id="why">
+        <h2>프로젝트 필요성 (Why)</h2><br>
+        <ul>
+            <li>기존 수기 출석의 번거로움</li>
+            <li>대리 출석 문제</li>
+            <li>실시간 자동화의 필요성</li>
+            <li>출석 정확도 향상</li>
+        </ul>
+        <p>이러한 문제를 해결하기 위해, <br>
+            실시간 얼굴인식 + 위치 인증 + 자동 기록 저장이 가능한 시스템이 필요하다고 생각하여 개발하게 되었습니다. </p>
+    </div><br>
+
+    <!-- 전체 시스템 구조 -->
+     <section class="section architecture" id="architecture">
+        <h2>전체 시스템 구조(Architecture)</h2><br>
+        
+
+        <p>• 모바일 앱에서 얼굴 촬영 → 이미지 전처리(dlib, OpenCV)</p>
+        <p>• 특징 벡터 추출 후 Spring Boot 서버로 전송</p>
+        <p>• 서버는 등록된 임베딩과 비교하여 출석 여부 결정</p>
+        <p>• MySQL DB에 기록 저장 후 결과 반환</p>
+        <br><br>
+
+        <h2> API 구조</h2><br>
+
+        <div class="api-box">
+            POST /auth/login  
+            <br>{ "id": "user01", "password": "1234" }
+        </div>
+
+        <div class="api-box">
+            POST /face/register  
+            <br>{ "userId": 1, "image": "base64-image" }
+        </div>
+
+        <div class="api-box">
+            POST /attendance/verify  
+            <br>{ "image": "base64", "lat": 37.56, "lng": 127.01 }
+        </div>
+
+        <p>각 API는 JWT 기반 인증을 사용하며, 모든 응답은 JSON 형태로 제공됩니다.</p>
+    </section><br>
+    
+
+
+    <!-- 기능 상세 -->
+    <section class="section" id="features">
+        <h2>주요 기능 상세</h2><br>
+
+        <div class="feature-list">
+
+            <div class="feature-item">
+                <h3>1) 얼굴 등록 기능</h3>
+                <p>- dlib을 활용한 얼굴 랜드마크 검출</p>
+                <p>- 얼굴 영역 크롭 및 정규화</p>
+                <p>- 사용자의 대표 임베딩 백터 DB 저장</p>
+            </div><br>
+
+            <div class="feature-item">
+                <h3>2) 실시간 출석 인증</h3>
+                <p>- 0.9초 내 얼굴 분석 및 매칭</p>
+                <p>- GPS 기반 강의실 위치 검증</p>
+                <p>- 시간대 기반 자동 출석 부여</p>
+            </div><br>
+        <div class="feature-item">
+            <h3>3) OpenCV + dlib을 함께 쓴 이유 </h3>
+        <p>OpenCV는 빠르고 안정적인 이미지 전처리(해상도 조절, 노이즈 제거, 얼굴 영역 검출)를 담당하고,<br>
+        dlib은 128D 얼굴 임베딩 생성과 랜드마크 분석을 통해 높은 정확도의 얼굴 비교를 수행합니다.<br>
+       정확한 인식률 + 실시간 처리 속도를 모두 충족시키기 위해 두 라이브러리를 함께 사용하여 구현하였습니다.</p>
+        </div>
+    </section>
+    </div><br>
+
+
+
+    <!-- 사용 기술 -->
+    <div class="section" id="tech">
+        <h2>사용한 기술 스택</h2>
+    </div>
+
+    <div class="tech-logos">
+        <div class="tech-item">
+            <img src="assets/images/expogo.png">
+            <p>Expo Go</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/reactnative.png">
+            <p>React Native</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/dlib+opencv.png">
+            <p>dlib + OpenCV</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/c++.png">
+            <p>C++</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/springboot.jpg">
+            <p>Spring Boot</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/restapi.png">
+            <p>REST API</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/mysql.png">
+            <p>MySQL</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/jwt.png">
+            <p>JSON WEB TOKEN (JWT)</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/github.png">
+            <p>GitHub</p>
+        </div>
+    </div><br><br>
+
+
+    <!-- Figma -->
+    <div class="section" id="figma">
+        <h2>와이어프레임 (figma)</h2><br>
+        <ul>
+            <li>로그인 화면</li>
+            <li>약관 동의 화면</li>
+            <li>메인 화면</li>
+            <li>출석 인증 화면 </li>
+            <li>출석 결과 조회 페이지</li>
+        </ul><br>
+        <div class="wirframe">
+            <img src="assets/images/와이어프레임.png">
+        </div>
+    </div><br>
+
+    <div id="front-end" class="section">
+        <h2>Front-end</h2><br>
+        <p class="section-desc">
+            프론트엔드는 React Native 기반으로 개발되었으며, 카메라 모듈 연동, API 통신 구조,
+            이미지 전송 처리 등을 중심으로 설계했습니다.
+            아래는 실제 앱 화면 구성 과정입니다.
+        </p><br>
+  <div class="h-scroll"> 
+    <img src="assets/images/photo1.jpg"> 
+    <img src="assets/images/photo2.jpg">
+     <img src="assets/images/photo3.jpg"> 
+     <img src="assets/images/photo4.jpg"> 
+     <img src="assets/images/photo5.jpg"> 
+     <img src="assets/images/photo6.jpg">
+      <img src="assets/images/photo7.jpg">
+     </div> 
+    </div><br>
+
+       
+<div class="section" id="result">
+    <h2>성과</h2><br>
+    <ul>
+        <li>API 응답 속도 평균 1.2초 달성</li>
+        <li>얼굴 임베딩 알고리즘 개선 → 정확도 향상</li>
+        <li>GPS · 시간 기반 멀티 검증으로 보안 강화</li>
+        <li>React Native 앱 성능 최적화</li>
+        <li>SpringBoot + MySQL 안정적 구조 구축</li>
+    </ul>
+</div><br>
+
+
+
+
+    <!-- 시연 -->
+    <div class="section" id="video">
+        <h2>프로젝트 시연 영상</h2><br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/yUcV3uj4Luo?si=eh041N0ccvqC5_qu" frameborder="0"
+            allowfullscreen>
+        </iframe>
+    </div><br>
+
+
+    <!-- footer -->
+    <footer class="site-footer">
+        <small>© 2025 yealim Moon. All rights reserved.</small>
+    </footer>
+
+
+</body>
+
+</html>

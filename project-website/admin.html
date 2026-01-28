@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지 소개 | AI 얼굴인식 출석 시스템</title>
+
+    <style>
+        body {
+            font-family: Pretendard, sans-serif;
+            margin: 0;
+            background: #ffffff;
+            color: #222;
+        }
+
+        /* ----------------------------------
+            상단 메인 헤더
+        ---------------------------------- */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            border-bottom: 1px solid #e5e7eb;
+            background-color: #ffffff;
+            position: relative;
+        }
+
+        .header-left {
+            min-width: 150px;
+        }
+
+        .school-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #002962;
+            white-space: nowrap;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+            min-width: 150px;
+            text-align: right;
+        }
+
+
+        /* ----------------------------------
+            네비게이션 바
+        ---------------------------------- */
+        nav.navbar {
+            width: 100%;
+            background: #fafafa;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+        }
+
+        nav.navbar ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav.navbar a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 6px 10px;
+            transition: 0.2s;
+        }
+
+        nav.navbar a:hover {
+            color: #0b5cff;
+        }
+
+
+        /* ----------------------------------
+            기본 헤더
+        ---------------------------------- */
+        header {
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+
+        header h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .faceon2 img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 24px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .preview-img {
+            width: 100%;
+            border-radius: 12px;
+            margin: 26px 0;
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .admin-section {
+            margin: 40px auto;
+            max-width: 1200px;
+        }
+
+        .admin-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .admin-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .admin-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .admin-caption {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .api-box {
+            background: #f7f7f7;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-family: "Consolas", monospace;
+            border-left: 5px solid #002962;
+            line-height: 1.6;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .flow-box {
+            background: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 6px solid #002962;
+            margin-top: 20px;
+            line-height: 1.6;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .flow-box h3 {
+            margin-top: 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .site-footer {
+            margin-top: 0px;
+            padding: 20px 0;
+            border-top: 1px solid #e5e7eb;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+     
+        .tech-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            text-align: center;
+        }
+
+        .tech-item img {
+            width: 80px;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgb(188, 188, 188);
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+
+        .tech-item p {
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="main-header">
+        <div class="header-left">
+            <img src="assets/images/faceon2.png" onclick="window.location.href='index.html'" alt="학교 로고" class="school-logo">
+        </div>
+
+        <div class="header-center">
+            <span class="project-title">AI 기반 얼굴인식 출석관리 시스템 - 관리자 Web</span>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <span class="arrow">←</span> Back
+        </a>
+    </header>
+
+
+<nav class="navbar">
+    <ul>
+        <li><a href="#overview">개요</a></li>
+        <li><a href="#main">주요 기능</a></li>
+        <li><a href="#page">차별점</a></li>
+        <li><a href="#admin">관리자 UI</a></li>
+        <li><a href="#db-structure">Database</a></li>
+        <li><a href="#flow">기능 흐름</a></li>
+        <li><a href="#security">보안 구조</a></li>
+        <li><a href="#tech">기술 스택</a></li>
+    </ul>
+</nav>
+<br><br>
+
+<section id="overview">
+    <h2>관리자 페이지란?</h2><br>
+    <p>AI 얼굴인식 출석 시스템의 관리자 페이지는 강의 운영자와 교수진이 출석 데이터를 효율적으로 관리하고 실시간으로 모니터링할 수 있도록 설계된 관리 도구입니다.</p>
+    <img src="assets/images/관리자페이지 홈.png" class="preview-img">
+</section><br>
+
+<section id="main">
+    <h2>관리자 페이지 주요 기능</h2><br>
+    <div class="feature-cards">
+        <div class="card"><h3>📊 실시간 출석 대시보드</h3><p>출석 현황을 시각화하여 빠르게 확인.</p></div>
+        <div class="card"><h3>👥 학생 정보 관리</h3><p>학생 정보 수정·삭제 등 관리.</p></div>
+        <div class="card"><h3>📝 출석 기록 조회</h3><p>날짜, 강의, 학생 기준 필터링 제공.</p></div>
+        <div class="card"><h3>⚙️ 시스템 설정</h3><p>지각·조퇴 판정 기준 설정 가능.</p></div>
+    </div>
+</section><br>
+
+<section id="page">
+    <h2>관리자 페이지 차별점</h2><br>
+    <div class="feature-cards">
+        <div class="card"><h3> PDF 보고서 자동 생성</h3><p>기간 선택 후 정식 보고서 자동 생성.</p></div>
+        <div class="card"><h3> Excel 데이터 다운로드</h3><p>출석 데이터 분석 용이.</p></div>
+        <div class="card"><h3> 고급 필터링</h3><p>필요한 데이터만 골라 다운로드.</p></div>
+        <div class="card"><h3> 보고서용 레이아웃</h3><p>출석 통계 포함한 PDF, 출력 기능 제공.</p></div>
+    </div>
+</section><br>
+
+<section id="admin" class="admin-section">
+    <h2>관리자 페이지 구성</h2><br>
+    <div class="admin-gallery">
+        <div class="admin-card"><img src="assets/images/관리자페이지 홈.png"><p class="admin-caption">① 대시보드</p></div>
+        <div class="admin-card"><img src="assets/images/학생관리페이지.png"><p class="admin-caption">② 학생 관리</p></div>
+        <div class="admin-card"><img src="assets/images/출석현황페이지.png"><p class="admin-caption">③ 출석 조회</p></div>
+        <div class="admin-card"><img src="assets/images/PDF로 출력_관리자페이지.png"><p class="admin-caption">④ 파일 다운로드</p></div>
+    </div>
+</section><br>
+
+<section id="db-structure">
+    <h2>관리자 페이지 DB 구조</h2><br>
+    <div class="api-box"><strong>TABLE Student</strong><br>student_id (PK)<br>name<br>department<br>grade<br>face_embedding</div>
+    <div class="api-box"><strong>TABLE Lecture</strong><br>lecture_id (PK)<br>lecture_name<br>professor<br>schedule_time</div>
+    <div class="api-box"><strong>TABLE Attendance</strong><br>attendance_id (PK)<br>student_id (FK)<br>lecture_id (FK)<br>timestamp<br>status<br>captured_image</div>
+    <div class="api-box"><strong>TABLE Admin</strong><br>admin_id (PK)<br>username<br>password_hash<br>role</div>
+    <div class="api-box"><strong>TABLE Export_Log</strong><br>export_id (PK)<br>admin_id (FK)<br>lecture_id (FK)<br>export_type<br>date_range<br>created_at</div>
+</section><br>
+
+<section id="flow">
+    <h2>관리자 기능 흐름</h2><br>
+    <h3>관리자 로그인 → 기능 메뉴 선택</h3>
+    <div class="flow-box">
+    <h3>학생 관리</h3>
+        <p>검색 → 상세조회 → 얼굴 등록/교체 → 중복 체크</p>
+    </div>
+    <div class="flow-box">
+        <h3>출석 기록 조회</h3>
+        <p>조회 기준 선택 → 필터링 → 상세 팝업 → 이상치 표시</p>
+    </div>
+     <div class="flow-box">
+        <h3>강의 관리</h3>
+        <p>강의 조회 → 강의 수정/추가 → 수강생 배정 → 강의별 대시보드</p>
+    </div>
+    <div class="flow-box">
+        <h3>실시간 모니터링</h3>
+        <p>실시간 인식 현황 수신 → 출석 반영 → 오류 학생 확인</p>
+    </div>
+</section><br>
+
+<section id="security">
+    <h2>보안 구조</h2><br>
+    <div class="feature-cards">
+        <div class="card"><h3> JWT 인증</h3><p>관리자 로그인 시 토큰 기반 인증 수행.</p></div>
+        <div class="card"><h3> 암호화 저장</h3><p>비밀번호는 해시로 저장되며 얼굴 데이터도 암호화.</p></div>
+        <div class="card"><h3> 권한 기반 접근 제어</h3><p>Admin role에 따라 기능 접근 제한.</p></div>
+        <div class="card"><h3> Export 기록 관리</h3><p>모든 다운로드 로그 남겨 보안 감사 가능.</p></div>
+    </div>
+</section>
+
+<section id="tech">
+        <h2>사용한 기술 스택</h2>
+    </div><br>
+
+    <div class="tech-logos">
+        <div class="tech-item">
+            <img src="assets/images/html.png">
+            <p>HTML</p>
+        </div>
+          <div class="tech-item">
+            <img src="assets/images/css.png">
+            <p>CSS</p>
+              </div>
+              <div class="tech-item">
+            <img src="assets/images/javascript.png">
+            <p>JavaScript</p>
+            </div>
+        <div class="tech-item">
+            <img src="assets/images/springboot.jpg">
+            <p>Spring Boot</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/restapi.png">
+            <p>REST API</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/mysql.png">
+            <p>MySQL</p>
+        </div>
+        <div class="tech-item">
+            <img src="assets/images/jwt.png">
+            <p>JSON WEB TOKEN (JWT)</p>
+            </div>
+            <div class="tech-item">
+            <img src="assets/images/pdf.png">
+            <p>PDF Report Generator</p>
+            </div>
+             <div class="tech-item">
+            <img src="assets/images/excel.png">
+            <p>Excel Export (xlsx)</p>
+            </div>
+            
+    </section><br>
+
+  <footer class="site-footer">
+        <small>© 2025 yealim Moon. All rights reserved.</small>
+    </footer>
+
+</html>
